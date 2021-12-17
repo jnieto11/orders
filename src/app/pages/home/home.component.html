@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <h2>Pedidos pendientes</h2>
+    <div class="row" style="margin: 20px;border: 0.5px solid #ddd;padding: 10px;border-radius: 5px;">
+        <div class="col-md-4">
+            <h4>Niveles para Filtrar</h4>
+            <p class="cursor-pointer" *ngFor="let item of listFilter" (click)="selectItem(item);">
+                {{item.name}}
+            </p>
+
+        </div>
+        <div class="col-md-8">
+            <h4>Niveles Seleccionados</h4>
+            <div class="chip" *ngFor="let item of tempfilters; let i = index">
+                <span style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    {{item.name}}
+                    <!-- <span class="closebtn" (click)="removeItem(item);">&times;</span> -->
+                </span>
+            </div>
+        </div>
+      
+    </div>
+
+
+
+
+
+
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+        </tr>
+        <tr *ngFor="let sub of items">
+            <td>{{sub.SlpCode}}</td>
+            <td>{{sub.CardCode}}</td>
+            <td>{{sub.DocNum}}</td>
+        </tr>
+    </table>
+
+
+</div>

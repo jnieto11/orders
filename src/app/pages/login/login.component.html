@@ -1,0 +1,27 @@
+<div class='container mt-5'>
+    <div class='form-signin'>
+        <form  (ngSubmit)="actionLogin();">
+            <div class='text-center'>
+                <img class='mb-4' src='https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg' width='72' height='72' />
+                <h1 class='h3 mb-3 font-weight-normal'>Iniciar Sesión</h1>
+            </div>
+
+            <hr />
+            <div class="mb-3">
+                <label for="email" class="form-label cursor-pointer">Correo</label>
+                <input  type="email" class="form-control" id="email" />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label cursor-pointer">Contraseña</label>
+                <input  type="password"  class="form-control" id="password" />
+            </div>
+            <br />
+            <div class='text-center'>
+                <button type='submit' class='btn btn-primary btn-lg'>
+                    Entrar
+                </button>
+                <p class="mt-5 mb-3 text-muted">© 2021</p>
+            </div>
+        </form>
+    </div>
+</div>
