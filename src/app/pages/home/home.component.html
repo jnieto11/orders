@@ -27,18 +27,28 @@
 
 
 
-    <table>
-        <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-        </tr>
-        <tr *ngFor="let sub of items">
-            <td>{{sub.SlpCode}}</td>
-            <td>{{sub.CardCode}}</td>
-            <td>{{sub.DocNum}}</td>
-        </tr>
-    </table>
+    <!-- <div *ngFor="let item1 of tst">
+        {{item1.desc}}
+        <div *ngFor="let item2 of item1.sub1">
+            {{item2.desc}}
+
+            <div *ngFor="let item3 of item2.sub2">
+                {{item3.desc}}
+
+                <div *ngFor="let item4 of item3.sub3">
+                    {{item4.desc}}
+
+                    <div *ngFor="let item5 of item4.sub4">
+                        {{item5.desc}}
+
+                        <div *ngFor="let item6 of item5.sub5">
+                            {{item6.desc}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
 
 </div>
