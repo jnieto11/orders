@@ -19,14 +19,30 @@
                 </span>
             </div>
         </div>
-      
+
     </div>
+    <h1>Angular 2 Recursive List</h1>
+    <ul>
+      <ng-template #recursiveList let-list>
+        <li *ngFor="let item of list">
+          {{item.title}}
+          <ul *ngIf="item.children.length > 0">
+            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+          </ul>
+        </li>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: list }"></ng-container>
+    </ul>
+<!-- 
+        <button (click)="filtertest();">
+            test
+        </button> -->
 
-
-
-
-
-
+    <!-- <ul>
+        <li *ngFor="let item1 of datos">
+            {{'Seleccion :'+item1.desc}}        
+        </li>
+    </ul> -->
     <!-- <div *ngFor="let item1 of tst">
         {{item1.desc}}
         <div *ngFor="let item2 of item1.sub1">

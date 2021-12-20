@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import orders from '../../models/data';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,24 +10,27 @@ import orders from '../../models/data';
 })
 export class HomeComponent implements OnInit {
   listFilter: any = [
-    { name: "Marca" },
-    { name: "Articulo" },
-    { name: "Categoria" },
-    { name: "Vendedor" },
-    { name: "Cliente" },
-    { name: "# pedido" }]
+    { name: "Marca", item: 'FirmCode' },
+    { name: "Articulo", item: 'ItemCode' },
+    { name: "Categoria", item: 'CategoriaCode' },
+    { name: "Vendedor", item: 'SlpCode' },
+    { name: "Cliente", item: 'CardCode' },
+    { name: "# pedido", item: 'DocNum' }]
 
-  tempfilters: any = [
-    { name: "Marca" },
-    { name: "Articulo" },
-    { name: "Categoria" }
-  ];
+  // SlpCode = vendedor, 
+  // CardCode = cliente, 
+  // DocNum = nuemero del pedido, 
+  // ItemCode = articulo, 
+  // FirmCode = marca, 
+  // CategoriaCode = categoria
+
+  tempfilters: any = [];
   items: any;
   tempitems: any = [];
   constructor() { }
 
   ngOnInit(): void {
-    console.log(orders);
+    // console.log(JSON.stringify(orders));
     this.items = [{
       "DocEntry": 89280,
       "DocNum": 30042028,
@@ -53,69 +55,121 @@ export class HomeComponent implements OnInit {
       "PRODUCCION": 0.000000,
       "TRANSITO": 0.000000,
       "CANAL": "CENTROS DE SERVICIOS"
-    }];
+    },
+    {
+      "DocEntry": 89357,
+      "DocNum": 30042083,
+      "CardCode": "SD-800242106-13",
+      "CardName": "SODIMAC PALMIRA UNICENTRO",
+      "GroupCode": 144,
+      "GroupName": "ALMACEN CADENA",
+      "SlpCode": 52,
+      "SlpName": "Fernando Sierra HC - Dist",
+      "ItemCode": "SOELSI7160DV",
+      "ItemName": "SOLDADOR ARC160S 110/220V ELITE",
+      "FirmCode": 182,
+      "FirmName": "ELITE SOLDADURA",
+      "CategoriaCode": "38",
+      "CategoriaName": "Mma pro",
+      "Subgrupo": "na",
+      "UEN": "SOLDADURA",
+      "Quantity": 8.000000,
+      "OpenQty": 8.000000,
+      "LineTotal": 3999528.000000,
+      "WhsCode": "00CAYENA",
+      "PRODUCCION": 0.000000,
+      "TRANSITO": 0.000000,
+      "CANAL": "ALMACEN CADENA"
+    }
+    ];
 
 
   }
 
-  tst = [{
-    desc: 'SlpCode = marca',
-    sub1: [
-      {
-        desc: 'ItemCode =  articulo',
-        sub2: [
-          {
-            desc: ' CategoriaCode = categoria',
-            sub3: [
-              {
-                desc: 'SlpCode = vendedor',
-                sub4: [{
-                  desc: 'CardCode = cliente',
-                  sub5: [
+  // its just list data from here down
+  public list = [
+    {
+      title: 'childless',
+      children: []
+    },
+    {
+      title: 'great grandparent',
+      children: [
+        {
+          title: 'childless grandsibiling',
+          children: []
+        },
+        {
+          title: 'grandparent',
+          children: [
+            {
+              title: 'childless sibiling',
+              children: []
+            },
+            {
+              title: 'another childless sibiling',
+              children: []
+            },
+            {
+              title: 'parent',
+              children: [
+                {
+                  title: 'child',
+                  children: []
+                },
+                {
+                  title: 'another child',
+                  children: []
+                },
+              ]
+            },
+            {
+              title: 'another parent',
+              children: [
+                {
+                  title: 'child',
+                  children: []
+                },
+              ]
+            },
+          ]
+        },
+        {
+          title: 'another grandparent',
+          children: [
+            {
+              title: 'parent',
+              children: [
+                {
+                  title: 'child',
+                  children: []
+                },
+                {
+                  title: 'another child',
+                  children: []
+                },
+                {
+                  title: 'a third child',
+                  children: []
+                },
+                {
+                  title: 'teen mother',
+                  children: [
                     {
-                      desc: 'DocNum = #pedido',
-                    }
+                      title: 'accident',
+                      children: []
+                    },
                   ]
-                }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                },
+              ]
+            },
+          ]
+        },
+      ]
+    },
+  ];
 
-    ]
-  }
 
-    , {
-    desc: 'SlpCode = marca',
-    sub1: [
-      {
-        desc: 'ItemCode =  articulo',
-        sub2: [
-          {
-            desc: ' CategoriaCode = categoria',
-            sub3: [
-              {
-                desc: 'SlpCode = vendedor',
-                sub4: [{
-                  desc: 'CardCode = cliente',
-                  sub5: [
-                    {
-                      desc: 'DocNum = #pedido',
-                    }
-                  ]
-                }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-
-    ]
-  }
-  ]
 
   // SlpCode = vendedor, 
   // CardCode = cliente, 
@@ -124,69 +178,46 @@ export class HomeComponent implements OnInit {
   // FirmCode = marca, 
   // CategoriaCode = categoria
 
+  datos: any = [];
+  filter: string = '';
 
   selectItem(item: any) {
-
     if (this.tempfilters.indexOf(item) === -1) {
       this.tempfilters.push(item);
     } else {
       this.removeItem(item);
     }
-
-    // for (let index = 0; index < this.tempfilters.length; index++) {
-    //   const element = this.tempfilters[index];
-    //   console.log(element);
-    //   if (this.tempfilters[0].name === 'Marca') {
-    //   }
-    //   if (this.tempfilters[index].name === 'Articulo') {
-
-    //   }
-    //   if (this.tempfilters[index].name === 'Categoria') {
-
-    //   }
-
-    // }
-
-
-    // for (let index = 0; index < this.items.length; index++) {
-    //   const element = this.items[index];
-    //   console.log(element.SlpCode);
-    //   console.log(element.CardCode);
-    //   console.log(element.DocNum);
-    //   console.log(element.ItemCode);
-    //   console.log(element.FirmCode);
-    //   console.log(element.CategoriaCode);
-    // }
-
-    for (let index = 0; index < this.tst.length; index++) {
-
-
-      console.log(this.tst[index].desc);
-
-
-      for (let index1 = 0; index1 < this.tst[index].sub1.length; index1++) {
-        console.log(this.tst[index].sub1[index1].desc);
-
-        for (let index2 = 0; index2 < this.tst[index].sub1[index1].sub2.length; index2++) {
-          console.log(this.tst[index].sub1[index1].sub2[index2].desc);
-          for (let index3 = 0; index3 < this.tst[index].sub1[index1].sub2[index2].sub3.length; index3++) {
-            console.log(this.tst[index].sub1[index1].sub2[index2].sub3[index3].desc);
-
-            for (let index4 = 0; index4 < this.tst[index].sub1[index1].sub2[index2].sub3[index3].sub4.length; index4++) {
-              console.log(this.tst[index].sub1[index1].sub2[index2].sub3[index3].sub4[index4].desc);
-
-              for (let index5 = 0; index5 < this.tst[index].sub1[index1].sub2[index2].sub3[index3].sub4[index4].sub5.length; index5++) {
-                console.log(this.tst[index].sub1[index1].sub2[index2].sub3[index3].sub4[index4].sub5[index5].desc);
-
-              }
-            }
-          }
-
-        }
-      }
-
+    this.filter = item.item;
+    if (this.datos.length == 0) {
+      this.items.forEach((e: any) => {
+        (this.datos.find((x: any) => x.desc === e[item.item]) == undefined) ? this.datos.push({ 'desc': e[item.item], array: [e] }) : '';
+      });
+    
+    } else {
+      console.log(this.filtertest(this.datos))      
     }
+ 
   }
+
+
+
+
+  filtertest(obj: any):any {
+    var array:any=[]
+    obj.forEach((e: any) => {
+      if (e.array) {
+        this.filtertest(e.array);
+      } else {
+        (array.find((x: any) => x.desc === this.filter) == undefined) ? array.push({ 'desc': this.filter, array: [e] }) : 'X';
+        e.array = array;       
+      }    
+    });    
+    return obj; 
+  }
+
+
+
+
 
   removeItem(item: any) {
     this.tempfilters = this.tempfilters.filter((sub: any) => sub !== item);
